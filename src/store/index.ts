@@ -11,9 +11,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 middlewares.push(sagaMiddleware);
 
-export type StoreState = ReturnType<typeof slices>;
+export type RootState = ReturnType<typeof slices>;
 
-const store: Store<StoreState> = configureStore({
+const store: Store<RootState> = configureStore({
   reducer: slices,
   middleware: middlewares,
 });
