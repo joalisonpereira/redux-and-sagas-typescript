@@ -11,7 +11,7 @@ function* fetchTodos() {
 }
 
 function* fetchTodo({ payload }: ReturnType<typeof TodoActions.fetchTodo>) {
-  const { data }: AxiosResponse<Todo> = yield call(api.get, `/${payload}`);
+  const { data }: AxiosResponse<Todo> = yield call(api.get, `/${payload.id}`);
 
   yield put(TodoActions.fetchTodoSuccess(data));
 }
