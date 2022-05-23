@@ -13,7 +13,7 @@ function App() {
   }, [dispatch]);
 
   function selectItem(item: Todo) {
-    dispatch(TodoActions.fetchTodo(item.id));
+    dispatch(TodoActions.fetchTodo({ id: item.id }));
   }
 
   if (loading) {

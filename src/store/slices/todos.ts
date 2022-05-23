@@ -8,7 +8,7 @@ const initialState: TodosState = {
 };
 
 export const slice = createSlice({
-  name: "peoples",
+  name: "todos",
   initialState,
   reducers: {
     fetchTodos: (state) => {
@@ -18,7 +18,7 @@ export const slice = createSlice({
       state.loading = false;
       state.todos = payload;
     },
-    fetchTodo: (state, {}: PayloadAction<number>) => {
+    fetchTodo: (state, {}: PayloadAction<{ id: number }>) => {
       state.loading = true;
     },
     fetchTodoSuccess: (state, { payload }: PayloadAction<Todo>) => {

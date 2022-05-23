@@ -1,9 +1,9 @@
 import { SelectEffect, Tail } from "redux-saga/effects";
 
-import { StoreState } from "~/store";
+import { RootState } from "../store";
 
 declare module "redux-saga/effects" {
-  export function select<Fn extends (state: StoreState, ...args: any[]) => any>(
+  export function select<Fn extends (state: RootState, ...args: any[]) => any>(
     selector: Fn,
     ...args: Tail<Parameters<Fn>>
   ): SelectEffect;

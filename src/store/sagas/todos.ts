@@ -4,7 +4,7 @@ import api from "../../services/api";
 import { TodoActions } from "../slices/todos";
 import { Todo } from "../types";
 
-function* fetchTodos({}: ReturnType<typeof TodoActions.fetchTodos>) {
+function* fetchTodos() {
   const { data }: AxiosResponse<Todo[]> = yield call(api.get, `/`);
 
   yield put(TodoActions.fetchTodosSuccess(data));
