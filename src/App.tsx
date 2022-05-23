@@ -1,24 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TodoActions } from "./store/slices/todos";
+import { Todo } from "./store/types";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const { todos, selectedTodo, loading } = useSelector((state) => state.todos);
+
+  useEffect(() => {
+    dispatch(TodoActions.fetchTodos());
+  }, [dispatch]);
+
+  function selectItem(item: Todo) {
+    dispatch(TodoActions.fetchTodo(item.id));
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {selectedTodo ? (
+          <>
+            <p>
+              <b>Id</b> {selectedTodo.id}
+            </p>
+            <p>
+              <b>Name</b> {selectedTodo.title}
+            </p>
+            <p>
+              <b>Completed</b> {selectedTodo.completed}
+            </p>
+            <p>
+              <b>User Id</b> {selectedTodo.userId}
+            </p>
+          </>
+        ) : (
+          todos.map((item) => (
+            <li key={item.id}>
+              {item.title}{" "}
+              <button type="button" onClick={() => selectItem(item)}>
+                Selecionar
+              </button>
+            </li>
+          ))
+        )}
+      </ul>
     </div>
   );
 }
