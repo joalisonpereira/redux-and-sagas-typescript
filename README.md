@@ -1,5 +1,5 @@
 <h1 align="left">
-  <strong>Redux and Redux Saga with Typescript Example</strong>
+  <strong>Redux and Redux Saga with Typescript</strong>
 </h1>
 
 <p align="left">
